@@ -1,0 +1,32 @@
+<script lang="ts">
+    import Button from "$lib/components/Button.svelte";
+    import QuestionUI from "./QuestionUI.svelte";
+
+    let data = $state([false, false, false])
+
+    $effect(() => {
+        console.log($state.snapshot(data))
+    })
+</script>
+
+
+<style>
+    .select-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+</style>
+
+
+{#snippet content()}
+    <div class="select-layout">
+        <Button onclick={() => data[0] = !data[0]} state={data[0]} message="편한 AS가 필요해요"/>
+        <Button onclick={() => data[1] = !data[1]} state={data[1]} message="중고 가격 유지가 중요해요"/>
+        <Button onclick={() => data[2] = !data[2]} state={data[2]} message="다양한 액세서리가 중요해요"/>
+    </div>
+{/snippet}
+
+
+<QuestionUI title="🧐 추가로
+            고려하고 싶은 것이 있나요?" description="가장 적합한 스마트폰을 찾고 있어요" content={content}/>
