@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      svelte-range-slider-pips:
+        specifier: ^4.0.7
+        version: 4.0.7(svelte@5.38.10)
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^6.0.0
@@ -497,6 +501,11 @@ packages:
       svelte: ^4.0.0 || ^5.0.0-next.0
       typescript: '>=5.0.0'
 
+  svelte-range-slider-pips@4.0.7:
+    resolution: {integrity: sha512-d4MJsuoGDkzfiTU/bk5jjZgbKe/dtAB1gTewF28+3g2GzUpUgSpA0Lox6JB0GNQVnPB46bepiXK8sO26iHvTZA==}
+    peerDependencies:
+      svelte: ^4.2.7 || ^5.0.0
+
   svelte@5.38.10:
     resolution: {integrity: sha512-UY+OhrWK7WI22bCZ00P/M3HtyWgwJPi9IxSRkoAE2MeAy6kl7ZlZWJZ8RaB+X4KD/G+wjis+cGVnVYaoqbzBqg==}
     engines: {node: '>=18'}
@@ -931,6 +940,10 @@ snapshots:
       typescript: 5.9.2
     transitivePeerDependencies:
       - picomatch
+
+  svelte-range-slider-pips@4.0.7(svelte@5.38.10):
+    dependencies:
+      svelte: 5.38.10
 
   svelte@5.38.10:
     dependencies:

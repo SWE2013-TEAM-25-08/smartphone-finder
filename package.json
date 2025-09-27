@@ -24,5 +24,8 @@
 		"onlyBuiltDependencies": [
 			"esbuild"
 		]
+	},
+	"dependencies": {
+		"svelte-range-slider-pips": "^4.0.7"
 	}
 }
