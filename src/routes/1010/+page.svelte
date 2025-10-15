@@ -57,74 +57,77 @@
         </nav>
     </header>
 
-    <div class="filters-container">
-        <section class="filters">
-            <h2>브랜드</h2>
-            <div class="brand-buttons">
-                {#each brands as brand}
-                    <button
-                        class:selected={selectedBrands.includes(brand)}
-                        on:click={() => toggleBrand(brand)}
-                    >
-                        {brand}
-                    </button>
-                {/each}
-            </div>
-        </section>
+    <div class="wrapper">
+        <div class="filters-container">
+            <section class="filters">
+                <h2>브랜드</h2>
+                <div class="brand-buttons">
+                    {#each brands as brand}
+                        <button
+                            class:selected={selectedBrands.includes(brand)}
+                            on:click={() => toggleBrand(brand)}
+                        >
+                            {brand}
+                        </button>
+                    {/each}
+                </div>
+            </section>
 
-        <section class="filters">
-            <h2>출시년도</h2>
-            <div class="year-buttons">
-                {#each years as year}
-                    <button
-                        class:selected={selectedYears.includes(year)}
-                        on:click={() => toggleYear(year)}
-                    >
-                        {year}
-                    </button>
-                {/each}
-            </div>
-        </section>
+            <section class="filters">
+                <h2>출시년도</h2>
+                <div class="year-buttons">
+                    {#each years as year}
+                        <button
+                            class:selected={selectedYears.includes(year)}
+                            on:click={() => toggleYear(year)}
+                        >
+                            {year}
+                        </button>
+                    {/each}
+                </div>
+            </section>
 
-        <section class="filters">
-            <h2>선호사항</h2>
-            <div class="feature-buttons">
-                {#each features as feature}
-                    <button
-                        class:selected={selectedFeatures.includes(feature)}
-                        on:click={() => toggleFeature(feature)}
-                    >
-                        {feature}
-                    </button>
-                {/each}
-            </div>
+            <section class="filters">
+                <h2>선호사항</h2>
+                <div class="feature-buttons">
+                    {#each features as feature}
+                        <button
+                            class:selected={selectedFeatures.includes(feature)}
+                            on:click={() => toggleFeature(feature)}
+                        >
+                            {feature}
+                        </button>
+                    {/each}
+                </div>
+            </section>
+        </div>
+
+        <section class="product-list">
+            <p>≡ 인기순</p>
+            {#each filteredPhones as phone}
+                <article class="phone-card">
+                    {#if phone.image}
+                        <img src={phone.image} alt={phone.name} />
+                    {:else}
+                        <div class="no-image">이미지 없음</div>
+                    {/if}
+                    <div class="phone-info">
+                        <h3>{phone.name}</h3>
+                        <p>{phone.description}</p>
+                        <ul>
+                            {#each phone.specs as spec}
+                                <li>{spec}</li>
+                            {/each}
+                        </ul>
+                    </div>
+                </article>
+            {/each}
         </section>
     </div>
-
-    <section class="product-list">
-        <p>≡ 인기순</p>
-        {#each filteredPhones as phone}
-            <article class="phone-card">
-                {#if phone.image}
-                    <img src={phone.image} alt={phone.name} />
-                {:else}
-                    <div class="no-image">이미지 없음</div>
-                {/if}
-                <div class="phone-info">
-                    <h3>{phone.name}</h3>
-                    <p>{phone.description}</p>
-                    <ul>
-                        {#each phone.specs as spec}
-                            <li>{spec}</li>
-                        {/each}
-                    </ul>
-                </div>
-            </article>
-        {/each}
-    </section>
 </div>
 
-<style>.page {
+<style>
+.page {
     font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
     background-color: #fff;
     color: #222;
@@ -136,6 +139,12 @@
     align-items: center;
     padding: 3px 0;
     border-bottom: 1px solid #f0f0f0;
+}
+
+.wrapper {
+    margin: 0 auto;
+    max-width: 960px;
+    min-width: 480px;
 }
 
 .service-title {
@@ -181,7 +190,6 @@
     text-align: right;
     gap: 30px;
     margin-top: 15px;
-    margin-left: 200px;
 }
 
 .filters h2 {
@@ -224,7 +232,6 @@ button.selected {
 
 .product-list {
     margin-top: 40px;
-    margin-left: 250px;
 }
 
 .phone-card {
