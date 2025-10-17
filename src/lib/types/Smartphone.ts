@@ -31,7 +31,7 @@ export class Smartphone implements SmartphoneData {
     readonly battery_time!: number  // 배터리 실사용 시간 (min: 4, max: 15)
     readonly storage!: number       // 물리 저장 공간 (min: 128GB, max: 1TB = 1024GB)
     readonly size!: number          // 화면 크기 inch (사용자 희망 크기에 가까우면 1점, 벗어날수록 감점)
-    readonly weight!: number        // 무게 (min: 160, max: 250, 희망 무게를 기준점으로 무거울수록 가파른 감점)
+    readonly weight!: number        // 무게 (min: 160, max: 250, 무거울수록 가파른 감점)
     readonly camera!: CameraLens    // 근접·망원 렌즈 여부 (각 렌즈 비중 50%씩, 렌즈가 있거나 사용자가 렌즈가 필요 없다고 답할 시 점수 부여)
     readonly brand!: Brand          // 브랜드 선호도 (min: -1, max: 1)
     readonly price!: number         // 가격 (min: -1, max: 1, 범위 내 가격일 때 1점, 초과 시 가파른 감점, 미만 시 완만한 감점)
@@ -62,7 +62,7 @@ export class Smartphone implements SmartphoneData {
 
         // Size & Weight
         let size = normalize(this.size - table.size.inch, -2, 2)
-        score += table.size.weight * -(size * size)
+        score += table.size.weight * (1 - 2 * size * size)
         score += table.weight * -easeInExpo(normalize(this.weight, 160, 250))
 
         // Camera
