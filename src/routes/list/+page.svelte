@@ -45,18 +45,6 @@
 </script>
 
 <div class="page">
-    <header class="page-header">
-        <h1 class="service-title">
-            <a href = "/">서비스 이름</a>
-            </h1>
-        <nav class="nav-bar">
-            <a href="/">홈</a>
-            <a href="/test">테스트</a>
-            <a href="/smartphone">스마트폰</a>
-            <a href="/news">IT 소식</a>
-        </nav>
-    </header>
-
     <div class="wrapper">
         <div class="filters-container">
             <section class="filters">
@@ -133,35 +121,10 @@
     color: #222;
 }
 
-.page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 3px 0;
-    border-bottom: 1px solid #f0f0f0;
-}
-
 .wrapper {
     margin: 0 auto;
     max-width: 960px;
     min-width: 480px;
-}
-
-.service-title {
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: 700;
-    background: linear-gradient(to right, #5B4EFF 40%, red 100%); /* 왼쪽은 보라, 오른쪽은 개나리색 */
-    -webkit-background-clip: text; /* 텍스트에 그라데이션 입히기 */
-    -webkit-text-fill-color: transparent; /* 텍스트 투명 처리해서 배경색만 보이게 */
-    transition: opacity 0.2s;
-    margin-left: 100px;
-}
-
-.nav-bar {
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 80px;
 }
 
 .nav-bar a {
