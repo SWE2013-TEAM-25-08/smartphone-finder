@@ -1,0 +1,1 @@
+export enum Brand { Apple, Samsung }
