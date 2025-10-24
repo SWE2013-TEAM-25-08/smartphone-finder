@@ -20,24 +20,39 @@
   });
 </script>
 
-<nav class="navbar">
-  <div class="navbar-inner container-x">
-    <a href="/" class="brand"><strong style="color:var(--primary)">서비스</strong> 이름</a>
-    <ul class="nav-menu">
-      <li class:active={active==='home'}><a href="/">홈</a></li>
-      <li class:active={active==='test'}><a href="/let-us-know-you">테스트</a></li>
-      <li class:active={active==='browse'}><a href="/list">스마트폰</a></li>
-      <li class:active={active==='news'}><a href="#news">IT 소식</a></li>
-    </ul>
+<style>
+#container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  flex-grow: 1;
+}
+</style>
+
+<div id="container">
+  <nav class="navbar">
+    <div class="navbar-inner container-x">
+      <a href="/" class="brand"><strong style="color:var(--primary)">서비스</strong> 이름</a>
+      <ul class="nav-menu">
+        <li class:active={active==='home'}><a href="/">홈</a></li>
+        <li class:active={active==='test'}><a href="/let-us-know-you">테스트</a></li>
+        <li class:active={active==='browse'}><a href="/list">스마트폰</a></li>
+        <li class:active={active==='news'}><a href="#news">IT 소식</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="wrapper">
+    <slot />
   </div>
-</nav>
 
-<slot />
-
-<footer class="footer">
-  <div class="container-x">
-    <h3 class="text-gradient" style="margin:0 0 8px;">Footer</h3>
-    <small>© SWE2013·TEAM-25-08</small>
-  </div>
-</footer>
-
+  <footer class="footer">
+    <div class="container-x">
+      <h3 class="text-gradient" style="margin:0 0 8px;">Footer</h3>
+      <small>© SWE2013·TEAM-25-08</small>
+    </div>
+  </footer>
+</div>
