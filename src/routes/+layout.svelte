@@ -25,8 +25,8 @@
     <a href="/" class="brand"><strong style="color:var(--primary)">서비스</strong> 이름</a>
     <ul class="nav-menu">
       <li class:active={active==='home'}><a href="/">홈</a></li>
-      <li class:active={active==='test'}><a href="#test">테스트</a></li>
-      <li class:active={active==='browse'}><a href="#browse">스마트폰</a></li>
+      <li class:active={active==='test'}><a href="/let-us-know-you">테스트</a></li>
+      <li class:active={active==='browse'}><a href="/list">스마트폰</a></li>
       <li class:active={active==='news'}><a href="#news">IT 소식</a></li>
     </ul>
   </div>

@@ -1,9 +1,9 @@
 <script lang="ts">
-  import Hero from '$lib/ui/Hero.svelte';
-  import SectionHeader from '$lib/ui/SectionHeader.svelte';
-  import Carousel from '$lib/ui/Carousel.svelte';
-  import ProductCard from '$lib/ui/ProductCard.svelte';
-  import NewsCard from '$lib/ui/NewsCard.svelte';
+  import Hero from './Hero.svelte';
+  import SectionHeader from './SectionHeader.svelte';
+  import Carousel from './Carousel.svelte';
+  import ProductCard from './ProductCard.svelte';
+  import NewsCard from './NewsCard.svelte';
 
   // 데이터 없으면 스켈레톤만 보여줌
   let phones: any[] = [];
@@ -15,7 +15,7 @@
 </section>
 
 <section id="browse" class="container-x section">
-  <SectionHeader title="둘러보기" href="#" />
+  <SectionHeader title="둘러보기" href="/list" />
   <Carousel items={phones} let:item>
     <ProductCard {item} />
   </Carousel>
