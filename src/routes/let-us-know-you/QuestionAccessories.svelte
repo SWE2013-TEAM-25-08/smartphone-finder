@@ -10,19 +10,7 @@
 
   // 상태 변화 감지
   $effect(() => {
-    const snapshot = $state.snapshot(data);
-    const hasSelection = snapshot.some(v => v);
-
-    console.log(snapshot);
-
-    // 하나라도 선택돼 있으면 answered 이벤트
-    if (hasSelection) {
-      dispatch("answered", { selected: snapshot });
-    } 
-    // 모두 해제되면 unanswered 이벤트
-    else {
-      dispatch("unanswered");
-    }
+    dispatch("answered", { selected: $state.snapshot(data) });
   });
 </script>
 

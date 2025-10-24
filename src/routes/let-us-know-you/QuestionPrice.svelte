@@ -1,11 +1,14 @@
 <script lang="ts">
     import RangeSlider from 'svelte-range-slider-pips';
     import QuestionUI from "./QuestionUI.svelte";
+    import { createEventDispatcher } from "svelte";
+
+    const dispatch = createEventDispatcher();
 
     let range = $state([10, 300])
 
     $effect(() => {
-        console.log($state.snapshot(range))
+        dispatch("answered", { selected: $state.snapshot(range) });
     })
 </script>
 

@@ -15,7 +15,7 @@
       dispatch("unanswered");
     } else {
       // 하나 선택된 경우 → 다음 버튼 활성화
-      dispatch("answered", { selected: select });
+      dispatch("answered", { selected: $state.snapshot(select) });
     }
   });
 </script>

@@ -16,7 +16,7 @@
     } 
     // 선택된 경우
     else {
-      dispatch("answered", { selected: select });
+      dispatch("answered", { selected: $state.snapshot(select) });
     }
   });
 </script>

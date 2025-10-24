@@ -10,16 +10,7 @@
 
   // ✅ 반응형 효과 — 선택이 바뀔 때마다 실행
   $effect(() => {
-    const hasSelection = data.some(v => v);
-
-    // 선택이 하나라도 있으면 answered 이벤트
-    if (hasSelection) {
-      dispatch("answered", { selected: data });
-    } 
-    // 전부 해제 시 unanswered 이벤트
-    else {
-      dispatch("unanswered");
-    }
+    dispatch("answered", { selected: $state.snapshot(data) });
   });
 </script>
 

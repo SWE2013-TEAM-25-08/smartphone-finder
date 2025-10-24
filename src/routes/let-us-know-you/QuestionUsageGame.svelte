@@ -14,7 +14,7 @@
 
     // 하나라도 선택되면 answered 이벤트, 모두 해제되면 unanswered 이벤트
     if (hasSelection) {
-      dispatch("answered", { selected: data });
+      dispatch("answered", { selected: $state.snapshot(data) });
     } else {
       dispatch("unanswered");
     }

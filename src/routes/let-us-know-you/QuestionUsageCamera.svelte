@@ -13,7 +13,7 @@
     const hasSelection = data.some(v => v);
 
     if (hasSelection) {
-      dispatch("answered", { selected: data });
+      dispatch("answered", { selected: $state.snapshot(data) });
     } else {
       dispatch("unanswered");
     }

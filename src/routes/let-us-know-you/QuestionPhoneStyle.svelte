@@ -13,7 +13,7 @@
     if (select === -1) {
       dispatch("unanswered"); // 아무것도 선택 안 됨 → 비활성화
     } else {
-      dispatch("answered", { selected: select }); // 선택 완료 → 활성화
+      dispatch("answered", { selected: $state.snapshot(select) }); // 선택 완료 → 활성화
     }
   });
 </script>
