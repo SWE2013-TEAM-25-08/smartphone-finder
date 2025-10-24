@@ -28,18 +28,21 @@
   ];
 
   let currentIndex = 0; // 현재 페이지 index
+  let answered = false; // 선택 완료 여부
 
   // 다음 페이지로 이동
   function nextPage() {
-    if (currentIndex < pages.length - 1) {
+    if (answered && currentIndex < pages.length - 1) {
       currentIndex += 1;
+      answered = false; // 다음 페이지로 넘어가면 다시 비활성화
     }
   }
 
-  // 이전 페이지로 이동 (선택사항)
+  // 이전 페이지로 이동
   function prevPage() {
     if (currentIndex > 0) {
       currentIndex -= 1;
+      answered = false; // 이전 페이지로도 초기화
     }
   }
 
@@ -49,7 +52,9 @@
 
 <!-- 현재 질문 화면 표시 -->
 <div class="question-container">
-  <svelte:component this={CurrentComponent} />
+  <svelte:component
+    this={CurrentComponent}
+    on:answered={() => (answered = true)} />
 </div>
 
 <!-- 페이지 이동 버튼 -->
@@ -58,7 +63,7 @@
     <button on:click={prevPage}>이전</button>
   {/if}
   {#if currentIndex < pages.length - 1}
-    <button on:click={nextPage}>다음</button>
+    <button on:click={nextPage} disabled={!answered}>다음</button>
   {:else}
     <button disabled>완료!</button>
   {/if}
@@ -85,6 +90,11 @@
     border-radius: 10px;
     font-size: 1rem;
     cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  button:hover:not(:disabled) {
+    background-color: #ff5196;
   }
 
   button:disabled {

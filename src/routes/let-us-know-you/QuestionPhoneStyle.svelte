@@ -1,32 +1,41 @@
 <script lang="ts">
-    import Button from "$lib/components/Button.svelte";
-    import QuestionUI from "./QuestionUI.svelte";
+  import Button from "$lib/components/Button.svelte";
+  import QuestionUI from "./QuestionUI.svelte";
+  import { createEventDispatcher } from "svelte";
 
-    let select = $state(-1)
+  const dispatch = createEventDispatcher();
 
-    $effect(() => {
-        console.log(select)
-    })
+  // ✅ -1은 아직 선택되지 않은 상태
+  let select = $state(-1);
+
+  // ✅ 선택 상태 변화 감시
+  $effect(() => {
+    if (select === -1) {
+      dispatch("unanswered"); // 아무것도 선택 안 됨 → 비활성화
+    } else {
+      dispatch("answered", { selected: select }); // 선택 완료 → 활성화
+    }
+  });
 </script>
 
-
 <style>
-    .select-layout {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
+  .select-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
 </style>
 
-
 {#snippet content()}
-    <div class="select-layout">
-        <Button onclick={() => select = 0} state={select === 0} message="작고 가벼운 스마트폰이 좋아요"/>
-        <Button onclick={() => select = 1} state={select === 1} message="화면은 크지만 가벼웠으면 좋겠어요"/>
-        <Button onclick={() => select = 2} state={select === 2} message="무게보다는 다른 것이 중요해요"/>
-    </div>
+  <div class="select-layout">
+    <Button onclick={() => (select = 0)} state={select === 0} message="작고 가벼운 스마트폰이 좋아요" />
+    <Button onclick={() => (select = 1)} state={select === 1} message="화면은 크지만 가벼웠으면 좋겠어요" />
+    <Button onclick={() => (select = 2)} state={select === 2} message="무게보다는 다른 것이 중요해요" />
+  </div>
 {/snippet}
 
-
-<QuestionUI title="👍 선호하는
-            스마트폰 스타일을 알려주세요" description="가장 적합한 스마트폰을 찾고 있어요" content={content}/>
+<QuestionUI
+  title="👍 선호하는 스마트폰 스타일을 알려주세요"
+  description="가장 적합한 스마트폰을 찾고 있어요"
+  content={content}
+/>
