@@ -4,6 +4,12 @@ import {Brand} from "$lib/enum/Brand";
 import {linear, normalize, easeInOutQuad, easeOutQuad, easeInExpo, priceCurve} from "$lib/utils/converter";
 
 export interface SmartphoneData {
+    readonly name: string
+    readonly description: string
+    readonly image: string | null
+    readonly specs: string[]
+    readonly release_date: Date
+
     readonly cpu: {
         single: number
         multi: number
@@ -20,6 +26,13 @@ export interface SmartphoneData {
     readonly price: number
 }
 export class Smartphone implements SmartphoneData {
+
+    readonly name!: string
+    readonly description!: string
+    readonly image!: string | null
+    readonly specs!: string[]
+    readonly release_date!: Date
+
 
     readonly cpu!: {                // GeekBench 6 점수 (싱글코어 70%, 멀티코어 30%)
         single: number              // 싱글코어 70% (min = 500, max = 4000)
