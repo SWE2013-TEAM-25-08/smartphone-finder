@@ -21,7 +21,8 @@
         let tableString: string | null = sessionStorage.getItem("table")
         if (tableString) {
             let table: Table = JSON.parse(tableString)
-            phones.sort((a: Smartphone, b: Smartphone) => a.getScore(table) - b.getScore(table))
+
+            phones = phones.sort((a: Smartphone, b: Smartphone) => b.getScore(table) - a.getScore(table))
         }
     })
 
@@ -41,7 +42,7 @@
         { display: "폴더블", filter: ((phone: Smartphone): boolean => false) },
     ];
 
-    let phones = [
+   let phones = [
         galaxyS25, galaxyS25Plus, galaxyS25Ultra,
         iPhone17, iPhone17Pro, iPhone17ProMax,
     ];
