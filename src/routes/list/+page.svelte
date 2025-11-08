@@ -1,18 +1,57 @@
-<script>
-    let brands = ["삼성전자", "애플", "샤오미"];
-    let years = ["2025년", "2024년", "2023년 이전"];
-    let features = ["고성능", "오래가는 배터리", "폴더블"];
+<script lang="ts">
+    import { onMount } from 'svelte';
 
-    let phones = [
-        { name: "아이폰 16", description: "균형잡힌 성능, 과감한 색상", specs: ["A18 칩셋", "8GB RAM"], image: "", brand: "애플", year: "2025년", feature: "고성능" },
-        { name: "갤럭시 S25", description: "강력한 칩셋과 훌륭한 AI", specs: ["Snapdragon 8 Elite 칩셋", "8GB RAM"], brand: "삼성전자", year: "2025년", feature: "폴더블" }
+    import {galaxyS25} from "$lib/phone/galaxyS25";
+    import {galaxyS25Plus} from "$lib/phone/galaxyS25Plus";
+    import {galaxyS25Ultra} from "$lib/phone/galaxyS25Ultra";
+    import {iPhone17} from "$lib/phone/iPhone17";
+    import {iPhone17Pro} from "$lib/phone/iPhone17Pro";
+    import {iPhone17ProMax} from "$lib/phone/iPhone17ProMax";
+
+    import type {Smartphone} from "$lib/types/Smartphone";
+    import {Brand} from "$lib/enum/Brand";
+    import type {Table} from "$lib/types/Table";
+
+    interface Filter {
+        display: string
+        filter: (phone: Smartphone) => boolean
+    }
+
+    onMount(() => {
+        let tableString: string | null = sessionStorage.getItem("table")
+        if (tableString) {
+            let table: Table = JSON.parse(tableString)
+
+            phones = phones.sort((a: Smartphone, b: Smartphone) => b.getScore(table) - a.getScore(table))
+        }
+    })
+
+    let brands: Filter[] = [
+        { display: "삼성전자", filter: ((phone: Smartphone): boolean => phone.brand === Brand.Samsung) },
+        { display: "애플", filter: ((phone: Smartphone): boolean => phone.brand === Brand.Apple) },
+        { display: "샤오미", filter: ((phone: Smartphone): boolean => phone.brand === null) }
+    ];
+    let years: Filter[] = [
+        { display: "2025년", filter: ((phone: Smartphone): boolean => phone.release_date.getFullYear() === 2025) },
+        { display: "2024년", filter: ((phone: Smartphone): boolean => phone.release_date.getFullYear() === 2024) },
+        { display: "2023년 이전", filter: ((phone: Smartphone): boolean => phone.release_date.getFullYear() <= 2023) },
+    ];
+    let features: Filter[] = [
+        { display: "고성능", filter: ((phone: Smartphone): boolean => phone.cpu.single >= 2000) },
+        { display: "오래가는 배터리", filter: ((phone: Smartphone): boolean => phone.battery_time >= 9 * 60) },
+        { display: "폴더블", filter: ((phone: Smartphone): boolean => false) },
     ];
 
-    let selectedBrands = [];
-    let selectedYears = [];
-    let selectedFeatures = [];
+   let phones = [
+        galaxyS25, galaxyS25Plus, galaxyS25Ultra,
+        iPhone17, iPhone17Pro, iPhone17ProMax,
+    ];
 
-    function toggleBrand(brand) {
+    let selectedBrands: Filter[] = [];
+    let selectedYears: Filter[] = [];
+    let selectedFeatures: Filter[] = [];
+
+    function toggleBrand(brand: Filter) {
         if (selectedBrands.includes(brand)) {
             selectedBrands = selectedBrands.filter(b => b !== brand);
         } else {
@@ -20,7 +59,7 @@
         }
     }
 
-    function toggleYear(year) {
+    function toggleYear(year: Filter) {
         if (selectedYears.includes(year)) {
             selectedYears = selectedYears.filter(y => y !== year);
         } else {
@@ -28,7 +67,7 @@
         }
     }
 
-    function toggleFeature(feature) {
+    function toggleFeature(feature: Filter) {
         if (selectedFeatures.includes(feature)) {
             selectedFeatures = selectedFeatures.filter(f => f !== feature);
         } else {
@@ -37,9 +76,9 @@
     }
 
     $: filteredPhones = phones.filter(phone => {
-        const brandMatch = selectedBrands.length === 0 || selectedBrands.includes(phone.brand);
-        const yearMatch = selectedYears.length === 0 || selectedYears.includes(phone.year);
-        const featureMatch = selectedFeatures.length === 0 || selectedFeatures.includes(phone.feature);
+        const brandMatch = selectedBrands.length === 0 || selectedBrands.some(brand => brand.filter(phone));
+        const yearMatch = selectedYears.length === 0 || selectedYears.some(year => year.filter(phone));
+        const featureMatch = selectedFeatures.length === 0 || selectedFeatures.some(feature => feature.filter(phone));
         return brandMatch && yearMatch && featureMatch;
     });
 </script>
@@ -55,7 +94,7 @@
                             class:selected={selectedBrands.includes(brand)}
                             on:click={() => toggleBrand(brand)}
                         >
-                            {brand}
+                            {brand.display}
                         </button>
                     {/each}
                 </div>
@@ -67,9 +106,8 @@
                     {#each years as year}
                         <button
                             class:selected={selectedYears.includes(year)}
-                            on:click={() => toggleYear(year)}
-                        >
-                            {year}
+                            on:click={() => toggleYear(year)}>
+                            {year.display}
                         </button>
                     {/each}
                 </div>
@@ -83,7 +121,7 @@
                             class:selected={selectedFeatures.includes(feature)}
                             on:click={() => toggleFeature(feature)}
                         >
-                            {feature}
+                            {feature.display}
                         </button>
                     {/each}
                 </div>
