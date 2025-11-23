@@ -2,11 +2,11 @@ import {Smartphone} from "$lib/types/Smartphone";
 import {Brand} from "$lib/enum/Brand";
 import {CameraLens} from "$lib/enum/CameraLens";
 
-export let galaxyS25 = new Smartphone({
+export let galaxyA15LTE = new Smartphone({
     name: "갤럭시 A15 LTE",
-    description: "준수한 화면, 오래가는 배터리",
+    description: "합리적 가격의 기본형 스마트폰",
     image: null,
-    specs: ["Media Tek Helio G99 칩셋", "6GB RAM"],
+    specs: ["MediaTek Helio G99 칩셋", "6GB RAM"],
     release_date: new Date("2024-03-18"),
 
     cpu: {single: 743, multi: 2005},
