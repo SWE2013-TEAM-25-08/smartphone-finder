@@ -3,6 +3,8 @@ import {Brand} from "$lib/enum/Brand";
 import {CameraLens} from "$lib/enum/CameraLens";
 
 export let galaxyS24Fe = new Smartphone({
+    link: "galaxy-s24-fe",
+
     name: "갤럭시 S24 FE",
     description: "합리적 가격의 플래그십 경험",
     image: null,

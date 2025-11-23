@@ -3,6 +3,8 @@ import {Brand} from "$lib/enum/Brand";
 import {CameraLens} from "$lib/enum/CameraLens";
 
 export let galaxyA15LTE = new Smartphone({
+    link: "galaxy-a15-lte",
+
     name: "갤럭시 A15 LTE",
     description: "합리적 가격의 기본형 스마트폰",
     image: null,

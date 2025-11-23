@@ -3,6 +3,8 @@ import {Brand} from "$lib/enum/Brand";
 import {CameraLens} from "$lib/enum/CameraLens";
 
 export let iPhone16e = new Smartphone({
+    link: "iphone-16-plus",
+
     name: "아이폰 16 플러스",
     description: "더 과감해진 색상, 프로 부럽지 않은 성능",
     image: null,

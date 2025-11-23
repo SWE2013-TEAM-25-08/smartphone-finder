@@ -3,6 +3,8 @@ import {Brand} from "$lib/enum/Brand";
 import {CameraLens} from "$lib/enum/CameraLens";
 
 export let iPhone15ProMax = new Smartphone({
+    link: "iphone-15-promax",
+
     name: "아이폰 15 프로 맥스",
     description: "가장 큰 디스플레이와 고급 카메라를 갖춘 아이폰 15 최상위 모델",
     image: null,

@@ -3,6 +3,8 @@ import {Brand} from "$lib/enum/Brand";
 import {CameraLens} from "$lib/enum/CameraLens";
 
 export let galaxyZflip7 = new Smartphone({
+    link: "galaxy-zflip-7",
+
     name: "갤럭시 Z Flip 7",
     description: "세련된 폴더블과 강력한 성능",
     image: null,

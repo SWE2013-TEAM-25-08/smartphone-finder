@@ -3,6 +3,8 @@ import {Brand} from "$lib/enum/Brand";
 import {CameraLens} from "$lib/enum/CameraLens";
 
 export let iPhone14Pro = new Smartphone({
+    link: "iphone-14-pro",
+
     name: "아이폰 14 프로",
     description: "프로급 카메라와 향상된 성능의 플래그십 모델",
     image: null,
