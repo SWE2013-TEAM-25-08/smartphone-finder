@@ -43,7 +43,7 @@
         <li class:active={active === 'home'}><a href="/">홈</a></li>
         <li class:active={active === 'test'}><a href="/let-us-know-you">테스트</a></li>
         <li class:active={active === 'list'}><a href="/list">스마트폰</a></li>
-        <li class:active={active === 'news'}><a href="/news">IT 소식</a></li>
+        <li class:active={active === 'news'}><a href="/#news">IT 소식</a></li>
       </ul>
     </div>
   </nav>

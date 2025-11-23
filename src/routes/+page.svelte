@@ -25,7 +25,7 @@
 </section>
 
 <section id="news" class="container-x section">
-  <SectionHeader title="전자기기 소식" href="#" />
+  <SectionHeader title="전자기기 소식" />
   <Carousel items={news} let:item cardWidth="360px">
     <NewsCard {item} />
   </Carousel>
