@@ -141,7 +141,8 @@ body {
     padding-bottom: 8px;
 }
 .carousel-item {
-    min-width: var(--card-w,280px);
+    min-width: var(--card-w, 280px);
+    max-width: 360px;
     scroll-snap-align: start;
 }
 .carousel-nav {
