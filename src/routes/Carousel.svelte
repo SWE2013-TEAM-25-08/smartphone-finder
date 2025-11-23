@@ -12,8 +12,6 @@
 </script>
 
 <div class="carousel">
-  <button class="carousel-nav carousel-prev" aria-label="prev" on:click={() => scrollBy(-1)}>❮</button>
-
   <div bind:this={scroller} class="carousel-track">
     {#if showSkeleton}
       {#each Array(6) as _}
@@ -38,5 +36,6 @@
     {/if}
   </div>
 
+  <button class="carousel-nav carousel-prev" aria-label="prev" on:click={() => scrollBy(-1)}>❮</button>
   <button class="carousel-nav carousel-next" aria-label="next" on:click={() => scrollBy(1)}>❯</button>
 </div>

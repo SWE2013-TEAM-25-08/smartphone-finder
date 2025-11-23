@@ -3,6 +3,8 @@ import {Brand} from "$lib/enum/Brand";
 import {CameraLens} from "$lib/enum/CameraLens";
 
 export let iPhone17 = new Smartphone({
+    link: "iphone-17",
+
     name: "아이폰 17",
     description: "프로모션이 적용된 최초의 일반 모델",
     image: null,

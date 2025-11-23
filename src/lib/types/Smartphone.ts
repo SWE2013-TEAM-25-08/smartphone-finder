@@ -4,6 +4,8 @@ import {Brand} from "$lib/enum/Brand";
 import {linear, normalize, easeInOutQuad, easeOutQuad, easeInExpo, priceCurve} from "$lib/utils/converter";
 
 export interface SmartphoneData {
+    readonly link: string
+
     readonly name: string
     readonly description: string
     readonly image: string | null
@@ -26,6 +28,7 @@ export interface SmartphoneData {
     readonly price: number
 }
 export class Smartphone implements SmartphoneData {
+    readonly link!: string
 
     readonly name!: string
     readonly description!: string

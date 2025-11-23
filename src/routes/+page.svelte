@@ -4,10 +4,13 @@
   import Carousel from './Carousel.svelte';
   import ProductCard from './ProductCard.svelte';
   import NewsCard from './NewsCard.svelte';
+  import {phoneList} from "$lib/phone/PhoneList";
+  import {newsList} from "$lib/news/NewsList";
+  import type {Smartphone} from "$lib/types/Smartphone";
+  import type {News} from "$lib/types/News";
 
-  // 데이터 없으면 스켈레톤만 보여줌
-  let phones: any[] = [];
-  let news: any[] = [];
+  let phones: Smartphone[] = phoneList;
+  let news: News[] = newsList;
 </script>
 
 <section id="test" class="container-x hero section">
@@ -22,7 +25,7 @@
 </section>
 
 <section id="news" class="container-x section">
-  <SectionHeader title="전자기기 소식" href="#" />
+  <SectionHeader title="전자기기 소식" />
   <Carousel items={news} let:item cardWidth="360px">
     <NewsCard {item} />
   </Carousel>

@@ -1,0 +1,8 @@
+:root{
+    --primary: #6E3CF7;
+    --primaryLight: #8A63FF;
+    --text: #0f172a;
+    --muted: #64748b;
+    --border: #e5e7eb;
+    --card-shadow: 0 2px 8px rgba(217, 217, 217, 0.3);
+}

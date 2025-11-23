@@ -1,22 +1,25 @@
 <script lang="ts">
-  import '../app.css';
-  import { onMount } from 'svelte';
-  export let data;
+  import '$lib/styles/app.css';
+  import '$lib/styles/color.css';
+  import '$lib/styles/font.css';
 
-  let active: 'home' | 'test' | 'browse' | 'news' = 'home';
+  import { page } from "$app/state";
 
-  onMount(() => {
-    const ids = ['test','browse','news'];
-    const sections = ids.map((id)=>document.getElementById(id)).filter(Boolean) as HTMLElement[];
-    const io = new IntersectionObserver((entries)=>{
-      const visible = entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
-      if(visible){
-        const id = visible.target.id as 'test'|'browse'|'news';
-        active = id==='test' ? 'home' : id;
-      }
-    },{root:null,rootMargin:'-30% 0px -60% 0px',threshold:[0,.25,.5,.75,1]});
-    sections.forEach(el=>io.observe(el));
-    return ()=>io.disconnect();
+  let { children } = $props()
+
+  const active = $derived.by(() => {
+    const path = page.url.pathname;
+
+    if (path === '/') {
+      return 'home';
+    } else if (path.startsWith('/let-us-know-you')) {
+      return 'test';
+    } else if (path.startsWith('/list')) {
+      return 'list';
+    } else if (path.startsWith('/news')) {
+      return 'news';
+    }
+    return 'none';
   });
 </script>
 
@@ -35,23 +38,24 @@
 <div id="container">
   <nav class="navbar">
     <div class="navbar-inner container-x">
-      <a href="/" class="brand"><strong style="color:var(--primary)">서비스</strong> 이름</a>
+      <a href="/" class="brand"><strong style="color:var(--primary)">Upik</strong></a>
       <ul class="nav-menu">
-        <li class:active={active==='home'}><a href="/">홈</a></li>
-        <li class:active={active==='test'}><a href="/let-us-know-you">테스트</a></li>
-        <li class:active={active==='browse'}><a href="/list">스마트폰</a></li>
-        <li class:active={active==='news'}><a href="#news">IT 소식</a></li>
+        <li class:active={active === 'home'}><a href="/">홈</a></li>
+        <li class:active={active === 'test'}><a href="/let-us-know-you">테스트</a></li>
+        <li class:active={active === 'list'}><a href="/list">스마트폰</a></li>
+        <li class:active={active === 'news'}><a href="/#news">IT 소식</a></li>
       </ul>
     </div>
   </nav>
 
   <div class="wrapper">
-    <slot />
+    {@render children?.()}
   </div>
 
   <footer class="footer">
     <div class="container-x">
-      <h3 class="text-gradient" style="margin:0 0 8px;">Footer</h3>
+      <h3 class="text-gradient" style="margin:0 0 8px;">Upik</h3>
+      <p>전자기기 추천 서비스</p>
       <small>© SWE2013·TEAM-25-08</small>
     </div>
   </footer>
