@@ -2,7 +2,7 @@ import {Smartphone} from "$lib/types/Smartphone";
 import {Brand} from "$lib/enum/Brand";
 import {CameraLens} from "$lib/enum/CameraLens";
 
-export let iPhone16e = new Smartphone({
+export let iPhone16Plue = new Smartphone({
     link: "iphone-16-plus",
 
     name: "아이폰 16 플러스",
