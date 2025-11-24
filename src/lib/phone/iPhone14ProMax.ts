@@ -12,8 +12,8 @@ export let iPhone14ProMax = new Smartphone({
     release_date: new Date("2022-09-16"),
 
     cpu: { single: 2550, multi: 6700 },
-    gpu: 27200,
-    battery_time: 29 * 60, // 동영상 재생 최대 29시간 기준
+    gpu: 1084,
+    battery_time: 9 * 60 + 31,
     brand: Brand.Apple,
     camera: CameraLens.MACRO | CameraLens.TELEPHOTO,
     display: 0.85,

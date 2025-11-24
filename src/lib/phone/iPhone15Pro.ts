@@ -12,8 +12,8 @@ export let iPhone15Pro = new Smartphone({
     release_date: new Date("2023-09-22"),
 
     cpu: { single: 2980, multi: 7640 },
-    gpu: 32000,
-    battery_time: 23 * 60, // 동영상 재생 최대 23시간
+    gpu: 1166,
+    battery_time: 9 * 60 + 20,
     brand: Brand.Apple,
     camera: CameraLens.MACRO | CameraLens.TELEPHOTO,
     display: 0.8,

@@ -15,7 +15,7 @@ export let iPhone16e = new Smartphone({
     gpu: 1264,
     battery_time: 9 * 60 + 10,
     brand: Brand.Apple,
-    camera: CameraLens.MACRO,
+    camera: CameraLens.None,
     display: 0.45,
     price: 94.05,
     ram: 8,

@@ -12,8 +12,8 @@ export let iPhone14 = new Smartphone({
     release_date: new Date("2022-09-16"),
 
     cpu: {single: 2259, multi: 5534},
-    gpu: 21336,
-    battery_time: 20 * 60,
+    gpu: 1017,
+    battery_time: 7 * 60 + 13,
     brand: Brand.Apple,
     camera: CameraLens.MACRO,
     display: 0.6,

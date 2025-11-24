@@ -12,8 +12,8 @@ export let iPhone15ProMax = new Smartphone({
     release_date: new Date("2023-09-22"),
 
     cpu: { single: 2980, multi: 7640 },
-    gpu: 32000,
-    battery_time: 29 * 60, // 동영상 재생 최대 29시간
+    gpu: 1149,
+    battery_time: 11 * 60 + 41,
     brand: Brand.Apple,
     camera: CameraLens.MACRO | CameraLens.TELEPHOTO,
     display: 0.85,

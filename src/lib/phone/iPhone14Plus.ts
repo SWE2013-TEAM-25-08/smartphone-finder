@@ -12,8 +12,8 @@ export let iPhone14Plus = new Smartphone({
     release_date: new Date("2022-10-07"),
 
     cpu: { single: 2259, multi: 5534 },
-    gpu: 21336,
-    battery_time: 26 * 60,  // 동영상 재생 최대 26시간
+    gpu: 1028,
+    battery_time: 9 * 60 + 23,
     brand: Brand.Apple,
     camera: CameraLens.MACRO,
     display: 0.7,

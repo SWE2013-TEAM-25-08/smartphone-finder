@@ -12,8 +12,8 @@ export let iPhone14Pro = new Smartphone({
     release_date: new Date("2022-09-16"),
 
     cpu: { single: 2550, multi: 6700 },
-    gpu: 27200,
-    battery_time: 23 * 60,  // 동영상 재생 최대 23시간 정도 기준
+    gpu: 1089,
+    battery_time: 7 * 60 + 49,
     brand: Brand.Apple,
     camera: CameraLens.MACRO | CameraLens.TELEPHOTO,
     display: 0.8,
