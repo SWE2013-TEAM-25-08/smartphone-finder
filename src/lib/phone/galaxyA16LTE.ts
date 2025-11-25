@@ -7,7 +7,7 @@ export let galaxyA16LTE = new Smartphone({
 
     name: "갤럭시 A16 LTE",
     description: "가성비 좋은 실용형 스마트폰",
-    image: null,
+    image: "/phone_img/galaxyA16LTE.png",
     specs: ["MediaTek Helio G99 칩셋", "4GB RAM"],
     release_date: new Date("2024-07-18"),
 

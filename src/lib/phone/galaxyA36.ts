@@ -7,7 +7,7 @@ export let galaxyA36 = new Smartphone({
 
     name: "갤럭시 A36",
     description: "강력한 성능과 선명한 화면",
-    image: null,
+    image: "/phone_img/galaxyA36.png",
     specs: ["Snapdragon 7 Gen 1 칩셋", "8GB RAM"],
     release_date: new Date("2024-12-13"),
 

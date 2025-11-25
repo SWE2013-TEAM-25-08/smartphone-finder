@@ -7,7 +7,7 @@ export let galaxyS25Edge = new Smartphone({
 
     name: "갤럭시 S25 Edge",
     description: "초슬림 엣지 디자인과 AI 기능",
-    image: null,
+    image: "/phone_img/galaxyS25Edge.png",
     specs: ["Snapdragon 8 Elite 칩셋", "12GB RAM"],
     release_date: new Date("2025-01-22"),
 

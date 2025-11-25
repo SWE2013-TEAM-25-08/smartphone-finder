@@ -7,7 +7,7 @@ export let galaxyS25Fe = new Smartphone({
 
     name: "갤럭시 S25 FE",
     description: "가성비 좋은 플래그십 성능",
-    image: null,
+    image: "/phone_img/galaxyS25Fe.png",
     specs: ["Exynos 2500 칩셋", "8GB RAM"],
     release_date: new Date("2025-10-10"),
 

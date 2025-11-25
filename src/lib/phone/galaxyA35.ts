@@ -7,7 +7,7 @@ export let galaxyA35 = new Smartphone({
 
     name: "갤럭시 A35",
     description: "고성능 프로세서와 넉넉한 용량",
-    image: null,
+    image: "/phone_img/galaxyA35.png",
     specs: ["Exynos 1380 칩셋", "6GB RAM"],
     release_date: new Date("2024-03-11"),
 

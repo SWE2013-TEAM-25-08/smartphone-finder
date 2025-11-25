@@ -7,7 +7,7 @@ export let galaxyS24Plus = new Smartphone({
 
     name: "갤럭시 S24+",
     description: "넓은 화면과 강력한 멀티태스킹",
-    image: null,
+    image: "/phone_img/galaxyS24Plus.png",
     specs: ["Snapdragon 8 Gen 3 칩셋", "12GB RAM"],
     release_date: new Date("2024-01-24"),
 

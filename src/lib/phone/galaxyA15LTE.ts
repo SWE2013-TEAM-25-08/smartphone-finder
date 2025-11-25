@@ -7,7 +7,7 @@ export let galaxyA15LTE = new Smartphone({
 
     name: "갤럭시 A15 LTE",
     description: "합리적 가격의 기본형 스마트폰",
-    image: null,
+    image: "/phone_img/galaxyA15LTE.png",
     specs: ["MediaTek Helio G99 칩셋", "6GB RAM"],
     release_date: new Date("2024-03-18"),
 

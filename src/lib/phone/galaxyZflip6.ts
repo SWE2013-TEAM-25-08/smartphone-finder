@@ -7,7 +7,7 @@ export let galaxyZflip6 = new Smartphone({
 
     name: "갤럭시 Z Flip 6",
     description: "컴팩트한 폴더블 디자인",
-    image: null,
+    image: "/phone_img/galaxyZflip6.png",
     specs: ["Snapdragon 8 Gen 3 칩셋", "12GB RAM"],
     release_date: new Date("2024-07-10"),
 
