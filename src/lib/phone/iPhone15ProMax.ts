@@ -7,7 +7,7 @@ export let iPhone15ProMax = new Smartphone({
 
     name: "아이폰 15 프로 맥스",
     description: "가장 큰 디스플레이와 고급 카메라를 갖춘 아이폰 15 최상위 모델",
-    image: null,
+    image: "/phone_img/iPhone15ProMax.png",
     specs: ["Apple A17 Pro 칩셋", "8GB RAM"],
     release_date: new Date("2023-09-22"),
 

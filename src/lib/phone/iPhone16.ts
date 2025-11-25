@@ -7,7 +7,7 @@ export let iPhone16 = new Smartphone({
 
     name: "아이폰 16",
     description: "성능과 휴대성을 모두 갖춘 차세대 기본 모델",
-    image: null,
+    image: "/phone_img/iPhone16.png",
     specs: ["Apple A18 칩셋", "8GB RAM"],
     release_date: new Date("2024-09-20"),
 

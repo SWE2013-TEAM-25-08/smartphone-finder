@@ -7,7 +7,7 @@ export let iPhone17 = new Smartphone({
 
     name: "아이폰 17",
     description: "프로모션이 적용된 최초의 일반 모델",
-    image: null,
+    image: "/phone_img/iPhone17.png",
     specs: ["A19 칩셋", "8GB RAM"],
     release_date: new Date("2025-09-19"),
 

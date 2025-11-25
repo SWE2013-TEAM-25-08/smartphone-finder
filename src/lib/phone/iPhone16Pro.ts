@@ -7,7 +7,7 @@ export let iPhone16Pro = new Smartphone({
 
     name: "아이폰 16 프로",
     description: "프로급 성능과 카메라를 갖춘 아이폰 16 시리즈의 상위 모델",
-    image: null,
+    image: "/phone_img/iPhone16Pro.png",
     specs: ["Apple A18 Pro 칩셋", "8GB RAM"],
     release_date: new Date("2024-09-20"),
 

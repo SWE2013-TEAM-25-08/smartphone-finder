@@ -7,7 +7,7 @@ export let iPhone14 = new Smartphone({
 
     name: "아이폰 14",
     description: "균형 잡힌 성능의 기본 플래그십",
-    image: null,
+    image: "/phone_img/iPhone14.png",
     specs: ["Apple A15 Bionic 칩셋 (5코어 GPU)", "6GB RAM"],
     release_date: new Date("2022-09-16"),
 

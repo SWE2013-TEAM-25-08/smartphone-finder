@@ -7,7 +7,7 @@ export let iPhone15 = new Smartphone({
 
     name: "아이폰 15",
     description: "다이내믹 아일랜드와 USB-C를 갖춘 새로운 기본 모델",
-    image: null,
+    image: "/phone_img/iPhone15.png",
     specs: ["Apple A16 Bionic 칩셋", "6GB RAM"],
     release_date: new Date("2023-09-22"),
 

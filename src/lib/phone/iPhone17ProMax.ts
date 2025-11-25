@@ -7,7 +7,7 @@ export let iPhone17ProMax = new Smartphone({
 
     name: "아이폰 17 프로맥스",
     description: "성능을 뽐내는 새로운 후면 디자인",
-    image: null,
+    image: "/phone_img/iPhone17ProMax.png",
     specs: ["A19 Pro 칩셋", "12GB RAM"],
     release_date: new Date("2025-09-19"),
 

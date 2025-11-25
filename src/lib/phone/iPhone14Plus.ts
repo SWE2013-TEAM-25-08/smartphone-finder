@@ -7,7 +7,7 @@ export let iPhone14Plus = new Smartphone({
 
     name: "아이폰 14 플러스",
     description: "더 큰 화면과 긴 배터리를 갖춘 플러스 모델",
-    image: null,
+    image: "/phone_img/iPhone14Plus.png",
     specs: ["Apple A15 Bionic 칩셋 (5코어 GPU)", "6GB RAM"],
     release_date: new Date("2022-10-07"),
 

@@ -7,7 +7,7 @@ export let iPhone15Plus = new Smartphone({
 
     name: "아이폰 15 플러스",
     description: "더 큰 화면과 긴 배터리를 갖춘 아이폰 15 플러스 모델",
-    image: null,
+    image: "/phone_img/iPhone15Plus.png",
     specs: ["Apple A16 Bionic 칩셋", "6GB RAM"],
     release_date: new Date("2023-09-22"),
 
