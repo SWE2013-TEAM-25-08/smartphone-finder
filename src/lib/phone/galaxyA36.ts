@@ -11,6 +11,8 @@ export let galaxyA36 = new Smartphone({
     specs: ["Snapdragon 7 Gen 1 칩셋", "8GB RAM"],
     release_date: new Date("2024-12-13"),
 
+    foldable: false,
+
     cpu: {single: 1150, multi: 3200},
     gpu: 1620,
     battery_time: 10 * 60 + 28,

@@ -11,6 +11,8 @@ export let iPhone16e = new Smartphone({
     specs: ["Apple A18 칩셋", "8GB RAM"],
     release_date: new Date("2024-09-20"),
 
+    foldable: false,
+
     cpu: {single: 3402, multi: 8418},
     gpu: 1477,
     battery_time: 9 * 60 + 30,

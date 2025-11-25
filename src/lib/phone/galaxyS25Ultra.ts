@@ -11,6 +11,8 @@ export let galaxyS25Ultra = new Smartphone({
     specs: ["Snapdragon 8 Elite 칩셋", "12GB RAM"],
     release_date: new Date("2025-01-22"),
 
+    foldable: false,
+
     cpu: {single: 2853, multi: 9451},
     gpu: 2016,
     battery_time: 11 * 60 + 50,

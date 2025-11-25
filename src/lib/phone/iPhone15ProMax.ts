@@ -11,6 +11,8 @@ export let iPhone15ProMax = new Smartphone({
     specs: ["Apple A17 Pro 칩셋", "8GB RAM"],
     release_date: new Date("2023-09-22"),
 
+    foldable: false,
+
     cpu: { single: 2980, multi: 7640 },
     gpu: 1149,
     battery_time: 11 * 60 + 41,

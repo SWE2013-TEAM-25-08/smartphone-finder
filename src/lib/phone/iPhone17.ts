@@ -11,6 +11,8 @@ export let iPhone17 = new Smartphone({
     specs: ["A19 칩셋", "8GB RAM"],
     release_date: new Date("2025-09-19"),
 
+    foldable: false,
+
     cpu: {single: 3593, multi: 9125},
     gpu: 1697,
     battery_time: 9 * 60 + 43,

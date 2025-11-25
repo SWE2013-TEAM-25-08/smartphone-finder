@@ -11,6 +11,8 @@ export let iPhone14Pro = new Smartphone({
     specs: ["Apple A16 Bionic 칩셋", "6GB RAM"],
     release_date: new Date("2022-09-16"),
 
+    foldable: false,
+
     cpu: { single: 2550, multi: 6700 },
     gpu: 1089,
     battery_time: 7 * 60 + 49,

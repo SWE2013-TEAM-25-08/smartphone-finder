@@ -11,6 +11,8 @@ export let galaxyA17LTE = new Smartphone({
     specs: ["MediaTek Helio G99 칩셋", "6GB RAM"],
     release_date: new Date("2024-11-18"),
 
+    foldable: false,
+
     cpu: {single: 762, multi: 2032},
     gpu: 1571,
     battery_time: 11 * 60 + 31,

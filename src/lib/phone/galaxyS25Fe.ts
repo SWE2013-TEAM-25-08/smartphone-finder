@@ -11,6 +11,8 @@ export let galaxyS25Fe = new Smartphone({
     specs: ["Exynos 2500 칩셋", "8GB RAM"],
     release_date: new Date("2025-10-10"),
 
+    foldable: false,
+
     cpu: {single: 2450, multi: 7500},
     gpu: 1820,
     battery_time: 10 * 60 + 8,

@@ -11,6 +11,8 @@ export let galaxyA35 = new Smartphone({
     specs: ["Exynos 1380 칩셋", "6GB RAM"],
     release_date: new Date("2024-03-11"),
 
+    foldable: false,
+
     cpu: {single: 1025, multi: 2950},
     gpu: 1520,
     battery_time: 10 * 60 + 12,

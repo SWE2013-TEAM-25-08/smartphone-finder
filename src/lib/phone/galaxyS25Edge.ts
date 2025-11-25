@@ -11,6 +11,8 @@ export let galaxyS25Edge = new Smartphone({
     specs: ["Snapdragon 8 Elite 칩셋", "12GB RAM"],
     release_date: new Date("2025-01-22"),
 
+    foldable: false,
+
     cpu: {single: 2745, multi: 9320},
     gpu: 1875,
     battery_time: 10 * 60 + 42,

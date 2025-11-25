@@ -39,7 +39,7 @@
     let features: Filter[] = [
         { display: "고성능", filter: ((phone: Smartphone): boolean => phone.cpu.single >= 2000) },
         { display: "오래가는 배터리", filter: ((phone: Smartphone): boolean => phone.battery_time >= 9 * 60) },
-        { display: "폴더블", filter: ((phone: Smartphone): boolean => false) },
+        { display: "폴더블", filter: ((phone: Smartphone): boolean => phone.foldable) },
     ];
 
    let phones = [

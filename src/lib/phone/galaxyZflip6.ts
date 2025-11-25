@@ -11,6 +11,8 @@ export let galaxyZflip6 = new Smartphone({
     specs: ["Snapdragon 8 Gen 3 칩셋", "12GB RAM"],
     release_date: new Date("2024-07-10"),
 
+    foldable: true,
+
     cpu: {single: 2205, multi: 6850},
     gpu: 1742,
     battery_time: 9 * 60 + 18,

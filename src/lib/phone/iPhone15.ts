@@ -11,6 +11,8 @@ export let iPhone15 = new Smartphone({
     specs: ["Apple A16 Bionic 칩셋", "6GB RAM"],
     release_date: new Date("2023-09-22"),
 
+    foldable: false,
+
     cpu: { single: 2550, multi: 6700 },
     gpu: 1053,
     battery_time: 9 * 60 + 57,

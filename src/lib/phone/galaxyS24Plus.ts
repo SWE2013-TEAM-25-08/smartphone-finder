@@ -11,6 +11,8 @@ export let galaxyS24Plus = new Smartphone({
     specs: ["Snapdragon 8 Gen 3 칩셋", "12GB RAM"],
     release_date: new Date("2024-01-24"),
 
+    foldable: false,
+
     cpu: {single: 2220, multi: 6900},
     gpu: 1750,
     battery_time: 10 * 60 + 15,
