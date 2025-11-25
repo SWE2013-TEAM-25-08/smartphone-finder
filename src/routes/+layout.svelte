@@ -11,6 +11,14 @@
   const active = $derived.by(() => {
     const path = page.url.pathname;
 
+    if (browser) {
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('config', 'G-VRB9BCY5TY', {
+          'page_path': path
+        })
+      }
+    }
+
     if (path === '/') {
       return 'home';
     } else if (path.startsWith('/let-us-know-you')) {
