@@ -6,35 +6,47 @@
     import type { Table } from "$lib/types/Table";
 
     interface Filter {
-        display: string
-        filter: (phone: Smartphone) => boolean
+        display: string;
+        filter: (phone: Smartphone) => boolean;
     }
 
+    const SortBy = {
+        Popular: "popular",
+        ReleaseDate: "release_date",
+        PriceHigh: "price_high",
+        PriceLow: "price_low",
+    } as const;
+
+    type SortByType = typeof SortBy[keyof typeof SortBy];
+
+    let sortBy: SortByType = SortBy.Popular;
+    let open = false;
+    let currentLabel = "인기순";
     let phones: Smartphone[] = PhoneList;
+    let table: Table | null = null;
 
     onMount(() => {
-        let tableString: string | null = sessionStorage.getItem("table")
+        const tableString = sessionStorage.getItem("table");
         if (tableString) {
-            let table: Table = JSON.parse(tableString)
-            phones = phones.sort((a: Smartphone, b: Smartphone) => b.getScore(table) - a.getScore(table))
+            table = JSON.parse(tableString);
         }
-    })
+    });
 
     let brands: Filter[] = [
-        { display: "삼성전자", filter: ((phone: Smartphone): boolean => phone.brand === Brand.Samsung) },
-        { display: "애플", filter: ((phone: Smartphone): boolean => phone.brand === Brand.Apple) },
+        { display: "삼성전자", filter: phone => phone.brand === Brand.Samsung },
+        { display: "애플", filter: phone => phone.brand === Brand.Apple },
     ];
 
     let years: Filter[] = [
-        { display: "2025년", filter: ((phone: Smartphone): boolean => phone.release_date.getFullYear() === 2025) },
-        { display: "2024년", filter: ((phone: Smartphone): boolean => phone.release_date.getFullYear() === 2024) },
-        { display: "2023년 이전", filter: ((phone: Smartphone): boolean => phone.release_date.getFullYear() <= 2023) },
+        { display: "2025년", filter: phone => phone.release_date.getFullYear() === 2025 },
+        { display: "2024년", filter: phone => phone.release_date.getFullYear() === 2024 },
+        { display: "2023년 이전", filter: phone => phone.release_date.getFullYear() <= 2023 },
     ];
 
     let features: Filter[] = [
-        { display: "고성능", filter: ((phone: Smartphone): boolean => phone.cpu.single >= 2000) },
-        { display: "오래가는 배터리", filter: ((phone: Smartphone): boolean => phone.battery_time >= 11 * 60) },
-        { display: "폴더블", filter: ((phone: Smartphone): boolean => phone.foldable) },
+        { display: "고성능", filter: phone => phone.cpu.single >= 2000 },
+        { display: "오래가는 배터리", filter: phone => phone.battery_time >= 11 * 60 },
+        { display: "폴더블", filter: phone => phone.foldable },
     ];
 
     let selectedBrands: Filter[] = [];
@@ -42,35 +54,60 @@
     let selectedFeatures: Filter[] = [];
 
     function toggleBrand(brand: Filter) {
-        if (selectedBrands.includes(brand)) {
-            selectedBrands = selectedBrands.filter(b => b !== brand);
-        } else {
-            selectedBrands = [...selectedBrands, brand];
-        }
+        selectedBrands = selectedBrands.includes(brand)
+            ? selectedBrands.filter(b => b !== brand)
+            : [...selectedBrands, brand];
     }
 
     function toggleYear(year: Filter) {
-        if (selectedYears.includes(year)) {
-            selectedYears = selectedYears.filter(y => y !== year);
-        } else {
-            selectedYears = [...selectedYears, year];
-        }
+        selectedYears = selectedYears.includes(year)
+            ? selectedYears.filter(y => y !== year)
+            : [...selectedYears, year];
     }
 
     function toggleFeature(feature: Filter) {
-        if (selectedFeatures.includes(feature)) {
-            selectedFeatures = selectedFeatures.filter(f => f !== feature);
-        } else {
-            selectedFeatures = [...selectedFeatures, feature];
-        }
+        selectedFeatures = selectedFeatures.includes(feature)
+            ? selectedFeatures.filter(f => f !== feature)
+            : [...selectedFeatures, feature];
     }
 
-    $: filteredPhones = phones.filter(phone => {
-        const brandMatch = selectedBrands.length === 0 || selectedBrands.some(brand => brand.filter(phone));
-        const yearMatch = selectedYears.length === 0 || selectedYears.some(year => year.filter(phone));
-        const featureMatch = selectedFeatures.length === 0 || selectedFeatures.some(feature => feature.filter(phone));
-        return brandMatch && yearMatch && featureMatch;
-    });
+    $: filteredPhones = phones
+        .filter(phone => {
+            const brandMatch = selectedBrands.length === 0 || selectedBrands.some(b => b.filter(phone));
+            const yearMatch = selectedYears.length === 0 || selectedYears.some(y => y.filter(phone));
+            const featureMatch = selectedFeatures.length === 0 || selectedFeatures.some(f => f.filter(phone));
+            return brandMatch && yearMatch && featureMatch;
+        })
+        .sort((a, b) => {
+            switch (sortBy) {
+                case SortBy.Popular:
+                    if (!table) return 0;
+                    return b.getScore(table) - a.getScore(table);
+                case SortBy.ReleaseDate:
+                    return b.release_date.getTime() - a.release_date.getTime();
+                case SortBy.PriceHigh:
+                    return b.price - a.price;
+                case SortBy.PriceLow:
+                    return a.price - b.price;
+            }
+        });
+
+        function selectSort(option: SortByType) {
+            sortBy = option;
+            open = false;
+
+            switch(option) {
+                case SortBy.Popular:
+                    currentLabel = "≡ 인기순"; break;
+                case SortBy.ReleaseDate:
+                    currentLabel = "≡ 최신순"; break;
+                case SortBy.PriceHigh:
+                    currentLabel = "≡ 가격 높은순"; break;
+                case SortBy.PriceLow:
+                    currentLabel = "≡ 가격 낮은순"; break;
+            }
+        }
+
 </script>
 
 <div class="page">
@@ -96,7 +133,8 @@
                     {#each years as year}
                         <button
                             class:selected={selectedYears.includes(year)}
-                            on:click={() => toggleYear(year)}>
+                            on:click={() => toggleYear(year)}
+                        >
                             {year.display}
                         </button>
                     {/each}
@@ -118,8 +156,21 @@
             </section>
         </div>
 
+        <div class="sort-custom" on:click={() => open = !open}>
+            <span>{currentLabel}</span>
+            <span class="icon"></span>
+        </div>
+
+        {#if open}
+            <ul class="sort-dropdown">
+                <li on:click={() => selectSort("popular")}>인기순</li>
+                <li on:click={() => selectSort("release_date")}>최신순</li>
+                <li on:click={() => selectSort("price_high")}>가격 높은순</li>
+                <li on:click={() => selectSort("price_low")}>가격 낮은순</li>
+            </ul>
+        {/if}
+
         <section class="product-list">
-            <p>≡ 인기순</p>
             {#each filteredPhones as phone}
                 <article class="phone-card">
                     {#if phone.image}
@@ -222,6 +273,9 @@ button.selected {
 }
 
 .product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 40px;
     margin-top: 40px;
 }
 
@@ -273,4 +327,50 @@ button.selected {
 .phone-info li {
     margin-bottom: 4px;
 }
+
+.sort-dropdown {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 4px;
+    list-style: none;
+    padding: 0;
+    width: 140px;
+    z-index: 10;
+}
+
+.sort-dropdown li {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.sort-dropdown li:hover {
+    background-color: #f4f4f4;
+}
+
+button {
+    all: unset;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background-color: #f4f4f4;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+}
+
+.sort-dropdown li {
+    all: unset;
+    display: block;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+.sort-dropdown li:hover {
+    background-color: #f4f4f4;
+}
+
 </style>
