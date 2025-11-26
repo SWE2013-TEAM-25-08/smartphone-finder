@@ -11,7 +11,7 @@
     }
 
     const SortBy = {
-        Popular: "popular",
+        Recommend: "recommend",
         ReleaseDate: "release_date",
         PriceHigh: "price_high",
         PriceLow: "price_low",
@@ -19,16 +19,21 @@
 
     type SortByType = typeof SortBy[keyof typeof SortBy];
 
-    let sortBy: SortByType = SortBy.Popular;
+    let sortBy: SortByType;
     let open = false;
-    let currentLabel = "인기순";
+    let currentLabel: string;
     let phones: Smartphone[] = PhoneList;
     let table: Table | null = null;
 
+    selectSort(SortBy.ReleaseDate);
+
+    $: recommendFilter = false;
     onMount(() => {
         const tableString = sessionStorage.getItem("table");
         if (tableString) {
             table = JSON.parse(tableString);
+            recommendFilter = true;
+            selectSort(SortBy.Recommend);
         }
     });
 
@@ -80,7 +85,7 @@
         })
         .sort((a, b) => {
             switch (sortBy) {
-                case SortBy.Popular:
+                case SortBy.Recommend:
                     if (!table) return 0;
                     return b.getScore(table) - a.getScore(table);
                 case SortBy.ReleaseDate:
@@ -97,8 +102,8 @@
             open = false;
 
             switch(option) {
-                case SortBy.Popular:
-                    currentLabel = "≡ 인기순"; break;
+                case SortBy.Recommend:
+                    currentLabel = "≡ 추천순"; break;
                 case SortBy.ReleaseDate:
                     currentLabel = "≡ 최신순"; break;
                 case SortBy.PriceHigh:
@@ -163,7 +168,9 @@
 
         {#if open}
             <ul class="sort-dropdown">
-                <li on:click={() => selectSort("popular")}>인기순</li>
+                {#if recommendFilter}
+                    <li on:click={() => selectSort("recommend")}>추천순</li>
+                {/if}
                 <li on:click={() => selectSort("release_date")}>최신순</li>
                 <li on:click={() => selectSort("price_high")}>가격 높은순</li>
                 <li on:click={() => selectSort("price_low")}>가격 낮은순</li>
