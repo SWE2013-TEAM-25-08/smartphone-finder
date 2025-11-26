@@ -4,11 +4,20 @@
   import '$lib/styles/font.css';
 
   import { page } from "$app/state";
+  import { browser } from "$app/environment";
 
   let { children } = $props()
 
   const active = $derived.by(() => {
     const path = page.url.pathname;
+
+    if (browser) {
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('config', 'G-VRB9BCY5TY', {
+          'page_path': path
+        })
+      }
+    }
 
     if (path === '/') {
       return 'home';
@@ -21,6 +30,13 @@
     }
     return 'none';
   });
+
+  if (browser) {
+    window.dataLayer = window.dataLayer || []
+    window.gtag = function gtag() { window.dataLayer.push(arguments) }
+    window.gtag('js', new Date())
+    window.gtag('config', 'G-VRB9BCY5TY')
+  }
 </script>
 
 <style>
@@ -34,6 +50,10 @@
   flex-grow: 1;
 }
 </style>
+
+<svelte:head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VRB9BCY5TY"></script>
+</svelte:head>
 
 <div id="container">
   <nav class="navbar">
