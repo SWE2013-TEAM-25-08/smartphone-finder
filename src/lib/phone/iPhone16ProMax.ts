@@ -3,7 +3,7 @@ import {Brand} from "$lib/enum/Brand";
 import {CameraLens} from "$lib/enum/CameraLens";
 
 export let iPhone16ProMax = new Smartphone({
-    link: "iphone-16-pro-max",
+    link: "iphone-16-promax",
 
     name: "아이폰 16 프로 맥스",
     description: "가장 큰 디스플레이와 배터리를 갖춘 아이폰 16 최상위 프로 모델",
@@ -14,7 +14,7 @@ export let iPhone16ProMax = new Smartphone({
     foldable: false,
 
     cpu: { single: 3480, multi: 8568 },
-    gpu: 1500,
+    gpu: 1396,
     battery_time: 11 * 60 + 30,
     brand: Brand.Apple,
     camera: CameraLens.MACRO | CameraLens.TELEPHOTO,

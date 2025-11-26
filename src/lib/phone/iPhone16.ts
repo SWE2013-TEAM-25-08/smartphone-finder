@@ -14,8 +14,8 @@ export let iPhone16 = new Smartphone({
     foldable: false,
 
     cpu: { single: 3200, multi: 8200 },
-    gpu: 30000,
-    battery_time: 22 * 60, // 동영상 재생 기준 22시간 가정
+    gpu: 1339,
+    battery_time: 8 * 60 + 19,
     brand: Brand.Apple,
     camera: CameraLens.MACRO,
     display: 0.7,

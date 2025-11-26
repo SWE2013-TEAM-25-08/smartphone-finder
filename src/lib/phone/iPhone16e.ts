@@ -14,7 +14,7 @@ export let iPhone16e = new Smartphone({
     foldable: false,
 
     cpu: {single: 3231, multi: 7921},
-    gpu: 1264,
+    gpu: 1008,
     battery_time: 9 * 60 + 10,
     brand: Brand.Apple,
     camera: CameraLens.None,

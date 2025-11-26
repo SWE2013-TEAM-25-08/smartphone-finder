@@ -2,7 +2,7 @@ import {Smartphone} from "$lib/types/Smartphone";
 import {Brand} from "$lib/enum/Brand";
 import {CameraLens} from "$lib/enum/CameraLens";
 
-export let iPhone16e = new Smartphone({
+export let iPhone16Plus = new Smartphone({
     link: "iphone-16-plus",
 
     name: "아이폰 16 플러스",
@@ -14,7 +14,7 @@ export let iPhone16e = new Smartphone({
     foldable: false,
 
     cpu: {single: 3402, multi: 8418},
-    gpu: 1477,
+    gpu: 1314,
     battery_time: 9 * 60 + 30,
     brand: Brand.Apple,
     camera: CameraLens.TELEPHOTO,
