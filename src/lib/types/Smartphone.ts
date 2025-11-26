@@ -12,6 +12,9 @@ export interface SmartphoneData {
     readonly specs: string[]
     readonly release_date: Date
 
+    readonly foldable: boolean
+
+
     readonly cpu: {
         single: number
         multi: number
@@ -35,6 +38,8 @@ export class Smartphone implements SmartphoneData {
     readonly image!: string | null
     readonly specs!: string[]
     readonly release_date!: Date
+
+    readonly foldable!: boolean     // 폴더블 여부
 
 
     readonly cpu!: {                // GeekBench 6 점수 (싱글코어 70%, 멀티코어 30%)

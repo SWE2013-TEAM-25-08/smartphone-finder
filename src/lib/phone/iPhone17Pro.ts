@@ -7,9 +7,11 @@ export let iPhone17Pro = new Smartphone({
 
     name: "아이폰 17 프로",
     description: "성능을 뽐내는 새로운 후면 디자인",
-    image: null,
+    image: "/phone_img/iPhone17Pro.png",
     specs: ["A19 Pro 칩셋", "12GB RAM"],
     release_date: new Date("2025-09-19"),
+
+    foldable: false,
 
     cpu: {single: 3750, multi: 9708},
     gpu: 1974,

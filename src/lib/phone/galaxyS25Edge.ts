@@ -2,26 +2,26 @@ import {Smartphone} from "$lib/types/Smartphone";
 import {Brand} from "$lib/enum/Brand";
 import {CameraLens} from "$lib/enum/CameraLens";
 
-export let galaxyS25Ultra = new Smartphone({
-    link: "galaxy-s25-ultra",
+export let galaxyS25Edge = new Smartphone({
+    link: "galaxy-s25-edge",
 
-    name: "갤럭시 S25 울트라",
-    description: "강력한 칩셋과 뛰어난 AI",
-    image: "/phone_img/galaxyS25Ultra.png",
+    name: "갤럭시 S25 Edge",
+    description: "초슬림 엣지 디자인과 AI 기능",
+    image: "/phone_img/galaxyS25Edge.png",
     specs: ["Snapdragon 8 Elite 칩셋", "12GB RAM"],
     release_date: new Date("2025-01-22"),
 
     foldable: false,
 
-    cpu: {single: 2853, multi: 9451},
-    gpu: 2016,
-    battery_time: 11 * 60 + 50,
+    cpu: {single: 2745, multi: 9320},
+    gpu: 1875,
+    battery_time: 10 * 60 + 42,
     brand: Brand.Samsung,
     camera: CameraLens.MACRO | CameraLens.TELEPHOTO,
-    display: 0.75,
-    price: 169.84,
+    display: 0.71,
+    price: 124.9,
     ram: 12,
-    size: 6.9,
+    size: 6.3,
     storage: 256,
-    weight: 218
+    weight: 168
 })

@@ -1,27 +1,21 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-
-    import {galaxyS25} from "$lib/phone/galaxyS25";
-    import {galaxyS25Plus} from "$lib/phone/galaxyS25Plus";
-    import {galaxyS25Ultra} from "$lib/phone/galaxyS25Ultra";
-    import {iPhone17} from "$lib/phone/iPhone17";
-    import {iPhone17Pro} from "$lib/phone/iPhone17Pro";
-    import {iPhone17ProMax} from "$lib/phone/iPhone17ProMax";
-
-    import type {Smartphone} from "$lib/types/Smartphone";
-    import {Brand} from "$lib/enum/Brand";
-    import type {Table} from "$lib/types/Table";
+    import { phoneList } from "$lib/phone/PhoneList"; 
+    import type { Smartphone } from "$lib/types/Smartphone";
+    import { Brand } from "$lib/enum/Brand";
+    import type { Table } from "$lib/types/Table";
 
     interface Filter {
         display: string
         filter: (phone: Smartphone) => boolean
     }
 
+    let phones: Smartphone[] = phoneList;
+
     onMount(() => {
         let tableString: string | null = sessionStorage.getItem("table")
         if (tableString) {
             let table: Table = JSON.parse(tableString)
-
             phones = phones.sort((a: Smartphone, b: Smartphone) => b.getScore(table) - a.getScore(table))
         }
     })
@@ -29,22 +23,18 @@
     let brands: Filter[] = [
         { display: "삼성전자", filter: ((phone: Smartphone): boolean => phone.brand === Brand.Samsung) },
         { display: "애플", filter: ((phone: Smartphone): boolean => phone.brand === Brand.Apple) },
-        { display: "샤오미", filter: ((phone: Smartphone): boolean => phone.brand === null) }
     ];
+
     let years: Filter[] = [
         { display: "2025년", filter: ((phone: Smartphone): boolean => phone.release_date.getFullYear() === 2025) },
         { display: "2024년", filter: ((phone: Smartphone): boolean => phone.release_date.getFullYear() === 2024) },
         { display: "2023년 이전", filter: ((phone: Smartphone): boolean => phone.release_date.getFullYear() <= 2023) },
     ];
+
     let features: Filter[] = [
         { display: "고성능", filter: ((phone: Smartphone): boolean => phone.cpu.single >= 2000) },
-        { display: "오래가는 배터리", filter: ((phone: Smartphone): boolean => phone.battery_time >= 9 * 60) },
-        { display: "폴더블", filter: ((phone: Smartphone): boolean => false) },
-    ];
-
-   let phones = [
-        galaxyS25, galaxyS25Plus, galaxyS25Ultra,
-        iPhone17, iPhone17Pro, iPhone17ProMax,
+        { display: "오래가는 배터리", filter: ((phone: Smartphone): boolean => phone.battery_time >= 11 * 60) },
+        { display: "폴더블", filter: ((phone: Smartphone): boolean => phone.foldable) },
     ];
 
     let selectedBrands: Filter[] = [];

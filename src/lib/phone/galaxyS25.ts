@@ -7,9 +7,11 @@ export let galaxyS25 = new Smartphone({
 
     name: "갤럭시 S25",
     description: "강력한 칩셋과 뛰어난 AI",
-    image: null,
+    image: "/phone_img/galaxyS25.png",
     specs: ["Snapdragon 8 Elite 칩셋", "8GB RAM"],
     release_date: new Date("2025-01-22"),
+
+    foldable: false,
 
     cpu: {single: 2712, multi: 9245},
     gpu: 1850,
