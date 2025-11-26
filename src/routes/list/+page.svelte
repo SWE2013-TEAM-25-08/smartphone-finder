@@ -179,22 +179,24 @@
 
         <section class="product-list">
             {#each filteredPhones as phone}
-                <article class="phone-card">
-                    {#if phone.image}
-                        <img src={phone.image} alt={phone.name} />
-                    {:else}
-                        <div class="no-image">이미지 없음</div>
-                    {/if}
-                    <div class="phone-info">
-                        <h3>{phone.name}</h3>
-                        <p>{phone.description}</p>
-                        <ul>
-                            {#each phone.specs as spec}
-                                <li>{spec}</li>
-                            {/each}
-                        </ul>
-                    </div>
-                </article>
+                <a href="info/{phone.link}">
+                    <article class="phone-card">
+                        {#if phone.image}
+                            <img class="phone-img" src={phone.image} alt={phone.name} />
+                        {:else}
+                            <div class="no-image">이미지 없음</div>
+                        {/if}
+                        <div class="phone-info">
+                            <h3 class="phone-name">{phone.name}</h3>
+                            <p>{phone.description}</p>
+                            <ul>
+                                {#each phone.specs as spec}
+                                    <li>{spec}</li>
+                                {/each}
+                            </ul>
+                        </div>
+                    </article>
+                </a>
             {/each}
         </section>
     </div>
@@ -279,6 +281,10 @@ button.selected {
     font-weight: 600;
 }
 
+a {
+    text-decoration: none;
+}
+
 .product-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -297,7 +303,7 @@ button.selected {
 .phone-card img {
     width: 120px;
     height: 120px;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
 }
 
@@ -316,10 +322,11 @@ button.selected {
     font-size: 16px;
     font-weight: 700;
     margin: 0 0 4px;
+    color: #212529;
 }
 
 .phone-info p {
-    color: #666;
+    color: #212529;
     font-size: 14px;
     margin: 0 0 8px;
 }
@@ -327,7 +334,7 @@ button.selected {
 .phone-info ul {
     padding-left: 16px;
     margin: 0;
-    color: #555;
+    color: #909090;
     font-size: 13px;
 }
 
