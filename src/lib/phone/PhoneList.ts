@@ -33,14 +33,19 @@ import { iPhone17ProMax } from "$lib/phone/iPhone17ProMax";
 
 import type { Smartphone } from "$lib/types/Smartphone";
 
-export const PhoneList: Smartphone[] = [
-    galaxyA15LTE, galaxyA16LTE, galaxyA17LTE,
-    galaxyA35, galaxyA36,
-    galaxyS24Fe, galaxyS24Plus,
-    galaxyS25, galaxyS25Edge, galaxyS25Fe, galaxyS25Plus, galaxyS25Ultra,
-    galaxyZflip6, galaxyZflip7, galaxyZfold7,
-    iPhone14, iPhone14Plus, iPhone14Pro, iPhone14ProMax,
-    iPhone15, iPhone15Plus, iPhone15Pro, iPhone15ProMax,
-    iPhone16, iPhone16Plus, iPhone16Pro, iPhone16ProMax, iPhone16e,
-    iPhone17, iPhone17Pro, iPhone17ProMax
-];
+export const phoneList: Smartphone[] = [
+        galaxyA15LTE, galaxyA16LTE, galaxyA17LTE,
+        galaxyA35, galaxyA36,
+        galaxyS24Fe, galaxyS24Plus,
+        galaxyS25, galaxyS25Edge, galaxyS25Fe, galaxyS25Plus, galaxyS25Ultra,
+        galaxyZflip6, galaxyZflip7, galaxyZfold7,
+
+        iPhone14, iPhone14Plus, iPhone14Pro, iPhone14ProMax,
+        iPhone15, iPhone15Plus, iPhone15Pro, iPhone15ProMax,
+        iPhone16, iPhone16Plus, iPhone16Pro, iPhone16ProMax, iPhone16e,
+        iPhone17, iPhone17Pro, iPhone17ProMax,
+    ]
+    .sort((a: Smartphone, b: Smartphone) => {
+        let time = b.release_date.getTime() - a.release_date.getTime()
+        return time != 0 ? time : a.price - b.price
+    })

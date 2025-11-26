@@ -1,6 +1,6 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-    import { PhoneList } from "$lib/phone/PhoneList"; 
+    import { phoneList } from "$lib/phone/PhoneList"; 
     import type { Smartphone } from "$lib/types/Smartphone";
     import { Brand } from "$lib/enum/Brand";
     import type { Table } from "$lib/types/Table";
@@ -10,7 +10,7 @@
         filter: (phone: Smartphone) => boolean
     }
 
-    let phones: Smartphone[] = PhoneList;
+    let phones: Smartphone[] = phoneList;
 
     onMount(() => {
         let tableString: string | null = sessionStorage.getItem("table")
