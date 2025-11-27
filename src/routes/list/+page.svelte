@@ -1,0 +1,399 @@
+<script lang="ts">
+    import { onMount } from 'svelte';
+    import { phoneList } from "$lib/phone/PhoneList"; 
+    import type { Smartphone } from "$lib/types/Smartphone";
+    import { Brand } from "$lib/enum/Brand";
+    import type { Table } from "$lib/types/Table";
+
+    interface Filter {
+        display: string
+        filter: (phone: Smartphone) => boolean
+    }
+
+    const SortBy = {
+        Recommend: "recommend",
+        ReleaseDate: "release_date",
+        PriceHigh: "price_high",
+        PriceLow: "price_low",
+    } as const;
+
+    type SortByType = typeof SortBy[keyof typeof SortBy];
+
+    let sortBy: SortByType;
+    let open = false;
+    let currentLabel: string;
+    let phones: Smartphone[] = phoneList;
+    let table: Table | null = null;
+
+    selectSort(SortBy.ReleaseDate);
+
+    $: recommendFilter = false;
+    onMount(() => {
+        const tableString = sessionStorage.getItem("table");
+        if (tableString) {
+            table = JSON.parse(tableString);
+            recommendFilter = true;
+            selectSort(SortBy.Recommend);
+        }
+    });
+
+    let brands: Filter[] = [
+        { display: "삼성전자", filter: phone => phone.brand === Brand.Samsung },
+        { display: "애플", filter: phone => phone.brand === Brand.Apple },
+    ];
+
+    let years: Filter[] = [
+        { display: "2025년", filter: phone => phone.release_date.getFullYear() === 2025 },
+        { display: "2024년", filter: phone => phone.release_date.getFullYear() === 2024 },
+        { display: "2023년 이전", filter: phone => phone.release_date.getFullYear() <= 2023 },
+    ];
+
+    let features: Filter[] = [
+        { display: "고성능", filter: phone => phone.cpu.single >= 2000 },
+        { display: "오래가는 배터리", filter: phone => phone.battery_time >= 11 * 60 },
+        { display: "폴더블", filter: phone => phone.foldable },
+    ];
+
+    let selectedBrands: Filter[] = [];
+    let selectedYears: Filter[] = [];
+    let selectedFeatures: Filter[] = [];
+
+    function toggleBrand(brand: Filter) {
+        selectedBrands = selectedBrands.includes(brand)
+            ? selectedBrands.filter(b => b !== brand)
+            : [...selectedBrands, brand];
+    }
+
+    function toggleYear(year: Filter) {
+        selectedYears = selectedYears.includes(year)
+            ? selectedYears.filter(y => y !== year)
+            : [...selectedYears, year];
+    }
+
+    function toggleFeature(feature: Filter) {
+        selectedFeatures = selectedFeatures.includes(feature)
+            ? selectedFeatures.filter(f => f !== feature)
+            : [...selectedFeatures, feature];
+    }
+
+    $: filteredPhones = phones
+        .filter(phone => {
+            const brandMatch = selectedBrands.length === 0 || selectedBrands.some(b => b.filter(phone));
+            const yearMatch = selectedYears.length === 0 || selectedYears.some(y => y.filter(phone));
+            const featureMatch = selectedFeatures.length === 0 || selectedFeatures.some(f => f.filter(phone));
+            return brandMatch && yearMatch && featureMatch;
+        })
+        .sort((a, b) => {
+            switch (sortBy) {
+                case SortBy.Recommend:
+                    if (!table) return 0;
+                    return b.getScore(table) - a.getScore(table);
+                case SortBy.ReleaseDate:
+                    return b.release_date.getTime() - a.release_date.getTime();
+                case SortBy.PriceHigh:
+                    return b.price - a.price;
+                case SortBy.PriceLow:
+                    return a.price - b.price;
+            }
+        });
+
+        function selectSort(option: SortByType) {
+            sortBy = option;
+            open = false;
+
+            switch(option) {
+                case SortBy.Recommend:
+                    currentLabel = "≡ 추천순"; break;
+                case SortBy.ReleaseDate:
+                    currentLabel = "≡ 최신순"; break;
+                case SortBy.PriceHigh:
+                    currentLabel = "≡ 가격 높은순"; break;
+                case SortBy.PriceLow:
+                    currentLabel = "≡ 가격 낮은순"; break;
+            }
+        }
+
+</script>
+
+<div class="page">
+    <div class="survey" style="background-color: #F2F3F5; padding: 1rem;">
+        <div class="wrapper">
+            <p style="color: #212529; font-weight: bold; font-size: 1.5rem;">Upik에서의 경험은 어떠신가요?</p>
+            <p>설문을 통해 Upik을 도와주세요. 설문에 참여한 분 중 5명에게 배달의민족 상품권을 드립니다.</p>
+            <a href="https://forms.gle/JFwJppSYmbyyWzoJA">
+                <p style="color: var(--primary)">설문조사로 이동</p>
+            </a>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="filters-container">
+            <section class="filters">
+                <h2>브랜드</h2>
+                <div class="brand-buttons">
+                    {#each brands as brand}
+                        <button
+                            class:selected={selectedBrands.includes(brand)}
+                            on:click={() => toggleBrand(brand)}
+                        >
+                            {brand.display}
+                        </button>
+                    {/each}
+                </div>
+            </section>
+
+            <section class="filters">
+                <h2>출시년도</h2>
+                <div class="year-buttons">
+                    {#each years as year}
+                        <button
+                            class:selected={selectedYears.includes(year)}
+                            on:click={() => toggleYear(year)}
+                        >
+                            {year.display}
+                        </button>
+                    {/each}
+                </div>
+            </section>
+
+            <section class="filters">
+                <h2>선호사항</h2>
+                <div class="feature-buttons">
+                    {#each features as feature}
+                        <button
+                            class:selected={selectedFeatures.includes(feature)}
+                            on:click={() => toggleFeature(feature)}
+                        >
+                            {feature.display}
+                        </button>
+                    {/each}
+                </div>
+            </section>
+        </div>
+
+        <div class="sort-custom" on:click={() => open = !open}>
+            <span>{currentLabel}</span>
+            <span class="icon"></span>
+        </div>
+
+        {#if open}
+            <ul class="sort-dropdown">
+                {#if recommendFilter}
+                    <li on:click={() => selectSort("recommend")}>추천순</li>
+                {/if}
+                <li on:click={() => selectSort("release_date")}>최신순</li>
+                <li on:click={() => selectSort("price_high")}>가격 높은순</li>
+                <li on:click={() => selectSort("price_low")}>가격 낮은순</li>
+            </ul>
+        {/if}
+
+        <section class="product-list">
+            {#each filteredPhones as phone}
+                <a href="info/{phone.link}">
+                    <article class="phone-card">
+                        {#if phone.image}
+                            <img class="phone-img" src={phone.image} alt={phone.name} />
+                        {:else}
+                            <div class="no-image">이미지 없음</div>
+                        {/if}
+                        <div class="phone-info">
+                            <h3 class="phone-name">{phone.name}</h3>
+                            <p>{phone.description}</p>
+                            <ul>
+                                {#each phone.specs as spec}
+                                    <li>{spec}</li>
+                                {/each}
+                            </ul>
+                        </div>
+                    </article>
+                </a>
+            {/each}
+        </section>
+    </div>
+</div>
+
+<style>
+.page {
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    background-color: #fff;
+    color: #222;
+}
+
+.wrapper {
+    margin: 0 auto;
+    max-width: 960px;
+    min-width: 480px;
+}
+
+.nav-bar a {
+    margin-left: 24px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.nav-bar a:hover {
+    color: #5B4EFF;
+}
+
+/*필터 리스트 사이 구분선*/
+.filters-container {
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 15px;
+    margin-bottom: 40px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.filters {
+    display: flex;
+    align-items: center;
+    text-align: right;
+    gap: 30px;
+    margin-top: 15px;
+}
+
+.filters h2 {
+    width: 80px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+    margin: 0;
+}
+
+.brand-buttons,
+.year-buttons,
+.feature-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+button {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px;
+    background-color: #f4f4f4;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background-color: #e9e9e9;
+}
+
+button.selected {
+    background-color: #E7E1FF;
+    color: #5B4EFF;
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.phone-card {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 12px 0;
+    margin-bottom: 20px;
+}
+
+.phone-card img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    display: block;
+}
+
+.no-image {
+    width: 120px;
+    height: 120px;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    border: 1px solid #f0f0f0;
+}
+
+.phone-info h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 4px;
+    color: #212529;
+}
+
+.phone-info p {
+    color: #212529;
+    font-size: 14px;
+    margin: 0 0 8px;
+}
+
+.phone-info ul {
+    padding-left: 16px;
+    margin: 0;
+    color: #909090;
+    font-size: 13px;
+}
+
+.phone-info li {
+    margin-bottom: 4px;
+}
+
+.sort-dropdown {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 4px;
+    list-style: none;
+    padding: 0;
+    width: 140px;
+    z-index: 10;
+}
+
+.sort-dropdown li {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.sort-dropdown li:hover {
+    background-color: #f4f4f4;
+}
+
+button {
+    all: unset;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background-color: #f4f4f4;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+}
+
+.sort-dropdown li {
+    all: unset;
+    display: block;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+.sort-dropdown li:hover {
+    background-color: #f4f4f4;
+}
+
+</style>

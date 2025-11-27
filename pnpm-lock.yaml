@@ -7,10 +7,17 @@ settings:
 importers:
 
   .:
+    dependencies:
+      svelte-range-slider-pips:
+        specifier: ^4.0.7
+        version: 4.0.7(svelte@5.38.10)
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^6.0.0
         version: 6.1.0(@sveltejs/kit@2.39.1(@sveltejs/vite-plugin-svelte@6.2.0(svelte@5.38.10)(vite@7.1.5))(svelte@5.38.10)(vite@7.1.5))
+      '@sveltejs/adapter-static':
+        specifier: ^3.0.10
+        version: 3.0.10(@sveltejs/kit@2.39.1(@sveltejs/vite-plugin-svelte@6.2.0(svelte@5.38.10)(vite@7.1.5))(svelte@5.38.10)(vite@7.1.5))
       '@sveltejs/kit':
         specifier: ^2.22.0
         version: 2.39.1(@sveltejs/vite-plugin-svelte@6.2.0(svelte@5.38.10)(vite@7.1.5))(svelte@5.38.10)(vite@7.1.5)
@@ -325,6 +332,11 @@ packages:
     peerDependencies:
       '@sveltejs/kit': ^2.0.0
 
+  '@sveltejs/adapter-static@3.0.10':
+    resolution: {integrity: sha512-7D9lYFWJmB7zxZyTE/qxjksvMqzMuYrrsyh1f4AlZqeZeACPRySjbC3aFiY55wb1tWUaKOQG9PVbm74JcN2Iew==}
+    peerDependencies:
+      '@sveltejs/kit': ^2.0.0
+
   '@sveltejs/kit@2.39.1':
     resolution: {integrity: sha512-NdgBGHcf/3tXYzPRyQuvsmjI5d3Qp6uhgmlN3uurhyEMN0hMFhdUG83zmWBH8u/QXj6VBmPrKvUn0QXf+Q3/lQ==}
     engines: {node: '>=18.13'}
@@ -496,6 +508,11 @@ packages:
     peerDependencies:
       svelte: ^4.0.0 || ^5.0.0-next.0
       typescript: '>=5.0.0'
+
+  svelte-range-slider-pips@4.0.7:
+    resolution: {integrity: sha512-d4MJsuoGDkzfiTU/bk5jjZgbKe/dtAB1gTewF28+3g2GzUpUgSpA0Lox6JB0GNQVnPB46bepiXK8sO26iHvTZA==}
+    peerDependencies:
+      svelte: ^4.2.7 || ^5.0.0
 
   svelte@5.38.10:
     resolution: {integrity: sha512-UY+OhrWK7WI22bCZ00P/M3HtyWgwJPi9IxSRkoAE2MeAy6kl7ZlZWJZ8RaB+X4KD/G+wjis+cGVnVYaoqbzBqg==}
@@ -739,6 +756,10 @@ snapshots:
     dependencies:
       '@sveltejs/kit': 2.39.1(@sveltejs/vite-plugin-svelte@6.2.0(svelte@5.38.10)(vite@7.1.5))(svelte@5.38.10)(vite@7.1.5)
 
+  '@sveltejs/adapter-static@3.0.10(@sveltejs/kit@2.39.1(@sveltejs/vite-plugin-svelte@6.2.0(svelte@5.38.10)(vite@7.1.5))(svelte@5.38.10)(vite@7.1.5))':
+    dependencies:
+      '@sveltejs/kit': 2.39.1(@sveltejs/vite-plugin-svelte@6.2.0(svelte@5.38.10)(vite@7.1.5))(svelte@5.38.10)(vite@7.1.5)
+
   '@sveltejs/kit@2.39.1(@sveltejs/vite-plugin-svelte@6.2.0(svelte@5.38.10)(vite@7.1.5))(svelte@5.38.10)(vite@7.1.5)':
     dependencies:
       '@standard-schema/spec': 1.0.0
@@ -931,6 +952,10 @@ snapshots:
       typescript: 5.9.2
     transitivePeerDependencies:
       - picomatch
+
+  svelte-range-slider-pips@4.0.7(svelte@5.38.10):
+    dependencies:
+      svelte: 5.38.10
 
   svelte@5.38.10:
     dependencies:
