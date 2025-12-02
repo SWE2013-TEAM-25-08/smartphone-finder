@@ -221,7 +221,6 @@
 .wrapper {
     margin: 0 auto;
     max-width: 960px;
-    min-width: 480px;
 }
 
 .nav-bar a {
@@ -292,6 +291,10 @@ button.selected {
 
 a {
     text-decoration: none;
+}
+
+.sort-custom {
+    margin-inline: 1rem;
 }
 
 .product-list {

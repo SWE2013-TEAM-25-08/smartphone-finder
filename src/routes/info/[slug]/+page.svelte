@@ -9,12 +9,19 @@
 <style>
     .wrapper {
         display: flex;
+        flex-wrap: wrap;
         max-width: 68rem;
         margin: 2rem auto 0;
         gap: 1.5rem;
     }
     .image-layout, .description-layout {
         flex: 1;
+        min-width: 300px;
+        padding: 1rem;
+    }
+
+    .img-cover {
+        object-fit: contain;
     }
 
     .phone-name {
