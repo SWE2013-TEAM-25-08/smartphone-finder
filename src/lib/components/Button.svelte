@@ -52,7 +52,7 @@
         height: 3rem;
         margin-inline-start: 0.5rem;
         align-content: center;
-        font-size: inherit;
+        font-size: 1rem;
         color: #212529;
     }
 </style>

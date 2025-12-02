@@ -78,6 +78,10 @@
 
     $: filteredPhones = phones
         .filter(phone => {
+            if (table && phone.price > table!.price.range[1] + 10) {
+                console.log(phone.price + " " + table!.price.range[1] + 100_000)
+                return false
+            }
             const brandMatch = selectedBrands.length === 0 || selectedBrands.some(b => b.filter(phone));
             const yearMatch = selectedYears.length === 0 || selectedYears.some(y => y.filter(phone));
             const featureMatch = selectedFeatures.length === 0 || selectedFeatures.some(f => f.filter(phone));
@@ -221,7 +225,6 @@
 .wrapper {
     margin: 0 auto;
     max-width: 960px;
-    min-width: 480px;
 }
 
 .nav-bar a {
@@ -292,6 +295,10 @@ button.selected {
 
 a {
     text-decoration: none;
+}
+
+.sort-custom {
+    margin-inline: 1rem;
 }
 
 .product-list {

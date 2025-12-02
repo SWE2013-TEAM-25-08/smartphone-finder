@@ -17,7 +17,7 @@
 <style>
   .select-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
     flex-direction: column;
     gap: 1rem;
   }

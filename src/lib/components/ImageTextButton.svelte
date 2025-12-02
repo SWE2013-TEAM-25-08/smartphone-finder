@@ -43,7 +43,7 @@
         margin-inline: 0.5rem;
         margin-bottom: 1rem;
         align-content: center;
-        font-size: inherit;
+        font-size: 1rem;
         white-space: pre-line;
         color: #909090;
     }
