@@ -17,6 +17,7 @@
     .select-layout {
         display: flex;
         flex-direction: column;
+        flex-wrap: wrap;
         gap: 1rem;
     }
 
@@ -29,7 +30,7 @@
 
 {#snippet content()}
     <div class="select-layout">
-        <RangeSlider id="always" suffix="만원" pips rangeFloat range draggy min={10} max={200} step={10} pipstep={1} rangeGapMin={20} first=label last=label bind:values={range} />
+        <RangeSlider id="always" suffix="만원" pips rangeFloat range draggy min={10} max={300} step={10} pipstep={1} rangeGapMin={20} first=label last=label bind:values={range} />
     </div>
 {/snippet}
 
