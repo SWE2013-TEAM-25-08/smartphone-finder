@@ -120,15 +120,6 @@
 </script>
 
 <div class="page">
-    <div class="survey" style="background-color: #F2F3F5; padding: 1rem;">
-        <div class="wrapper">
-            <p style="color: #212529; font-weight: bold; font-size: 1.5rem;">Upik에서의 경험은 어떠신가요?</p>
-            <p>설문을 통해 Upik을 도와주세요. 설문에 참여한 분 중 5명에게 배달의민족 상품권을 드립니다.</p>
-            <a href="https://forms.gle/JFwJppSYmbyyWzoJA">
-                <p style="color: var(--primary)">설문조사로 이동</p>
-            </a>
-        </div>
-    </div>
     <div class="wrapper">
         <div class="filters-container">
             <section class="filters">
